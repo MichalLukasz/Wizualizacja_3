@@ -26,7 +26,7 @@ prod = {"Jabłka": "kg",
         "Jogurt": "szt",
         "Cukier 500g": "szt",
         "Cukierki": "kg"}
-lista_szt = {key: value for key, value in prod.items() if value == "szt"}
+lista_szt = {x for x, value in prod.items() if value == "szt"}
 print(prod)
 print(lista_szt)
 
@@ -76,10 +76,11 @@ print('Zadanie 6')
 
 
 def ciag(a1=1, b=4, ile=10):
-    an = 1
+    lista = []
     for ile in range(ile):
         an = a1 * b ** ile
-    return an
+        lista.append(an)
+    return lista
 
 
 # wynikiem jest n-ty wyraz ciągu
@@ -93,12 +94,12 @@ def ciag_2(*liczby):
         return 0
     else:
         iloczyn = 1
-    for x in range(liczby[-1]):
-        iloczyn = liczby[0] * liczby[1] ** x
+    for x in liczby:
+        iloczyn *= x
     return iloczyn
 
 
-print(ciag_2(1, 4, 10))
+print(ciag_2(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
 
 print('Zadanie 8')
 
@@ -137,9 +138,22 @@ while n <= 10:
         plik.write(", ")
 plik.close()
 
-
 print('Zadanie 11')
 plik = open("liczby.txt", "r")
 linia = plik.readline()
 plik.close()
 print(linia)
+
+
+def ciag(*liczby):
+    if len(liczby) == 0:
+        return 0
+    else:
+        suma = 0
+        for h in liczby:
+            suma += h
+    return suma
+
+
+print(ciag())
+print(ciag(1, 2, 3.5, 4, 5, 6, 7, 8))
